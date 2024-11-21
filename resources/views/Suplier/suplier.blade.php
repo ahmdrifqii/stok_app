@@ -72,7 +72,25 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @foreach ($data as $item)
+                                    <tr>
+                                        <td></td>
+                                        <td>{{(($data->currentPage() - 1)* $data->perPage()) + $loop->iteration}}</td>
+                                        <td>{{ $item->nama_suplier }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td class="text-center">{{ $item->telp }}</td>
+                                        <td>{{ Carbon\Carbon::parse($item->tgl_terdaftar)->format('d/M/Y') }}</td>
+                                        <td class="text-center">
+                                            <a href="{{url('suplier/edit')}}/{{$item->id}}" class="btn btn-warning btn-sm" title="Edit">
+                                                <i class="bi bi-pencil i"></i>
+                                            </a>
+
+                                            <a href="" class="btn btn-danger btn-sm" title="Delete">
+                                                <i class="bi bi-trash i"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                         
