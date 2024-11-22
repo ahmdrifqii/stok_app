@@ -81,12 +81,12 @@
                                         <td class="text-center">{{ $item->level }} </td>
                                         <td class="text-center">
                                             <a href="{{ url('/pegawai/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
+                                                <i class="bi bi-pencil">Edit</i>
                                             </a>
                                             
                                             <a href="{{ url('/pegawai/delete', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" 
                                                onclick="return confirm('Hapus Data ???');">
-                                                <i class="bi bi-trash"></i> Delete
+                                                <i class="bi bi-trash">Delete</i>
                                             </a>
                                         </td>
                                     </tr>   

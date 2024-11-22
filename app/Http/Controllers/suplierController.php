@@ -89,7 +89,10 @@ class suplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $getSuplier = suplier::find($id);
+        return view('Suplier.editSuplier', compact(
+            'getSuplier',
+        ));
     }
 
     /**
@@ -97,7 +100,36 @@ class suplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_suplier' => 'required',
+            'alamat' => 'required',
+            'telp' => 'required',
+            'email' => 'required',
+            'tgl_terdaftar' => 'required',
+            'status' => 'required',
+        ],[
+            'nama_suplier.required' => 'Data wajib diisi',
+            'email.required' => 'Data wajib diisi',
+            'email.email' => 'Format email tidak sesuai',
+            'alamat.required' => 'Data wajib diisi',
+            'telp.required' => 'Data wajib diisi',
+            'tgl_terdaftar.required' => 'Data wajib diisi',
+            'status.required' => 'Data wajib diisi',
+        ]);
+
+        $saveSuplier = suplier::find($id);
+        $saveSuplier->nama_suplier = $request->nama_suplier;
+        $saveSuplier->alamat = $request->alamat;
+        $saveSuplier->telp = $request->telp;
+        $saveSuplier->email = $request->email;
+        $saveSuplier->tgl_terdaftar = $request->tgl_terdaftar;
+        $saveSuplier->status = $request->status;
+        $saveSuplier->save();
+
+        return redirect('/suplier')->with(
+            'message',
+            'Data' . $request->nama_suplier . 'berhasil diperbarui!'
+        );
     }
 
     /**
