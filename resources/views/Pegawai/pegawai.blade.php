@@ -80,13 +80,13 @@
                                         <td>{{ $item->email }} </td>
                                         <td class="text-center">{{ $item->level }} </td>
                                         <td class="text-center">
-                                            <a href="{{ url('/pegawai/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil">Edit</i>
+                                            <a href="{{ url('/pegawai/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm" title="Edit">
+                                                <i class="bi bi-pencil i"></i>
                                             </a>
                                             
-                                            <a href="{{ url('/pegawai/delete', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" 
+                                            <a href="{{ url('/pegawai/delete', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" title="Delete"
                                                onclick="return confirm('Hapus Data ???');">
-                                                <i class="bi bi-trash">Delete</i>
+                                                <i class="bi bi-trash i"></i>
                                             </a>
                                         </td>
                                     </tr>   
