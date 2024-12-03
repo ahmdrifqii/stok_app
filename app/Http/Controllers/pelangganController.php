@@ -12,7 +12,10 @@ class pelangganController extends Controller
      */
     public function index()
     {
-        return view('Pelanggan.pelanggan');
+        $getData = palanggan::paginate();
+        return view('Pelanggan.pelanggan', compact(
+            'getData'
+        ));
     }
 
     /**
@@ -65,7 +68,10 @@ class pelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $getData = palanggan::find($id);
+        return view('Pelanggan.editPelanggan', compact(
+            'getData'
+        ));
     }
 
     /**
@@ -73,7 +79,35 @@ class pelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_pelanggan' => 'required',
+            'telp' => 'required',
+            'jenis_kelamin' => 'required',
+            'alamat' => 'required',
+            'kota' => 'required',
+            'provinsi' => 'required',
+            ],[
+                'nama_pelanggan.required' => 'Data wajib diisi!!!', 
+                'telp.required' => 'Data wajib diisi!!!',
+                'jenis_kelamin.required' => 'Data wajib diisi!!!',
+                'alamat.required' => 'Data wajib diisi!!!',
+                'kota.required' => 'Data wajib diisi!!!',
+                'provinsi.required' => 'Data wajib diisi!!!',
+            ]);
+
+            $updatePelanggan = palanggan::find($id);
+            $updatePelanggan->nama_pelanggan = $request->nama_pelanggan;
+            $updatePelanggan->telp = $request->telp;
+            $updatePelanggan->jenis_kelamin = $request->jenis_kelamin;
+            $updatePelanggan->alamat = $request->alamat;
+            $updatePelanggan->kota = $request->kota;
+            $updatePelanggan->provinsi = $request->provinsi;
+            $updatePelanggan->save();
+
+            return redirect('/pelanggan')->with(
+                'message',
+                'Data pelanggan'. $request->nama_pelanggan . ' Berhasil di perbarui'
+            );
     }
 
     /**

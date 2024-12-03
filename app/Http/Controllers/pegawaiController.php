@@ -69,7 +69,7 @@ class pegawaiController extends Controller
     {
         $data = User::find($id);
             return view('Pegawai.editPegawai', compact(
-
+                
                 'data'
             ));
         
