@@ -4,13 +4,14 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\pegawaiController;
 use App\Http\Controllers\pelangganController;
+use App\Http\Controllers\stokController;
 use App\Http\Controllers\suplierController;
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [AuthController::class, 'index']);
-Route::post('/', [AuthController::class, 'login_proses']);
+Route::post('/', [AuthController::class, 'login_proses'])->name('login');
 
 Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
     
@@ -44,7 +45,13 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
     /**
      * ini route stok
      */
+    Route::controller(stokController::class)->group(function(){
 
+        Route::get('/stok', 'index');
+
+        Route::get('/stok/add', 'create');
+        Route::post('stok/add', 'store');
+    });
 
      /**
       * ini route barang masuk
@@ -68,6 +75,9 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
 
     Route::get('pelanggan/edit/{id}', 'edit');
     Route::post('pelanggan/edit/{id}', 'update');
+
+    Route::get('/pelanggan/{id}', 'destroy');
+
     });
 
     /**
