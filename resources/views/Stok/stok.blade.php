@@ -75,7 +75,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- @foreach ($getData as $item)
+                                @foreach ($getData as $item)
                                     <tr style="background-color: #434343">
                                         <td class="text-center">
                                             {{ (($getData->currentPage() - 1) * $getData->perPage()) + $loop->iteration }} 
@@ -85,25 +85,25 @@
                                                 {{ $item->kode_barang }} 
                                             </p>
                                         </td>
-                                        <td width="550px">{{ $item->nama_barang }} </td>
-                                        <td>{{ 'Rp ' . number_format($item->harga, 0, ',', '.') }} </td>
+                                        <td width="450px">{{ $item->nama_barang }} </td>
+                                        <td>{{ 'Rp' . number_format($item->harga, 0, ',', '.') }} </td>
                                         <td class="text-center">{{ $item->stok }} </td>
                                         <td>{{ $item->getSuplier->nama_suplier }} </td>
                                         <td class="text-center">{{ $item->cabang }} </td>
                                         <td class="text-center">
-                                            <a href="{{ url('/stok/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
+                                            <a href="{{ url('/stok/edit') }}/{{ $item->id }}" class="btn btn-warning btn-sm" title="Edit">
+                                                <i class="bi bi-pencil"></i>
                                             </a>
-                                            <a href="{{ url('/stok', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" 
+                                            <a href="{{ url('/stok', ['id' => $item->id]) }}" class="btn btn-danger btn-sm" title="Hapus"
                                                 onclick="return confirm('Hapus Data {{ $item->nama_suplier }} ??');">
-                                                <i class="bi bi-trash"></i> Delete
+                                                <i class="bi bi-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                @endforeach --}}
+                                @endforeach
                             </tbody>
                         </table>
-                        {{-- {{ $getData->links() }} --}}
+                        {{ $getData->links() }}
 
                     </div>
                 </div>

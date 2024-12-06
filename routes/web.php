@@ -46,11 +46,13 @@ Route::middleware(['auth', 'cekLevel:superadmin,admin'])->group(function(){
      * ini route stok
      */
     Route::controller(stokController::class)->group(function(){
-
         Route::get('/stok', 'index');
-
+        
         Route::get('/stok/add', 'create');
-        Route::post('stok/add', 'store');
+        Route::post('/stok/add', 'store')->name('saveStok');
+
+        Route::get('/stok/edit/{id}', 'edit');
+        Route::post('/stok/edit/{id}', 'update');
     });
 
      /**
