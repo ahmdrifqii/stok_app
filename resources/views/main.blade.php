@@ -93,11 +93,12 @@
                     <i class="bi bi-house-fill mx-2"></i> Dashboard
                 </a>
 
+                @if (Auth::user()->level == 'superadmin')
                 {{-- Menu Pegawai --}}
                 <a href="{{ url('/pegawai') }}" class="px-1 side nav-item nav-link {{ Request::is('pegawai') ? 'active' : '' }} text-light">
                     <i class="fa-solid fa-key mx-2"></i> Pegawai
                 </a>
-
+            @endif
                 {{-- Menu Data Barang --}}
                 <div class="px-3 pt-3 text-decoration-none text-light"><strong>Barang</strong></div>
                     <a href="{{ url('/stok') }}" class="px-4 side nav-item nav-link {{ Request::is('stok') ? 'active' : '' }} text-light">
