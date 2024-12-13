@@ -51,10 +51,10 @@
                                         @foreach ($getnama_barang_id as $item)
                                             <option value="{{ $item->id }}" {{ old('nama_barang_id') == $item->id ? 'selected' : '' }}>
                                                 {{ $item->kode_barang }} 
-                                                ===> {{ \Illuminate\Support\Str::limit($item->nama_barang, 20, '...') }}  
+                                                ===> {{ \illuminate\Support\str::limit($item->nama_barang, 20, '. . .')}}  
                                                 ===> {{ $item->getSuplier->nama_suplier }} 
                                                 ===> {{ $item->stok }}
-                                                ===> {{'Rp' . number_format($item->harga_beli, 0, '.', ',') }}
+                                                ===> {{ 'Rp' . number_format($item->harga, 0, ',', '.') }}
                                             </option>
                                         @endforeach
                                     </select>
